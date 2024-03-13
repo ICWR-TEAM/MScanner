@@ -8,7 +8,7 @@ class main:
     global explode_blacklist
 
     def __init__(self, Target):
-        self.res_dir = [Target] #result
+        self.res_dir = [Target]
         self.scan_directory(Target)
         result = self.get_file(self.res_dir, explode_blacklist)
         self.proc(result)
@@ -39,8 +39,6 @@ class main:
                     op_file = open(res, "r").read()
                     find_pattern = re.findall(pattern_suspect_code, op_file)
                     result_value_pattern = []
-                    # Loop melalui setiap elemen dalam list dan cek jika nilainya tidak kosong
-
                     for index, value in enumerate(find_pattern):
                         if value:
                             dict_res = {
@@ -50,7 +48,6 @@ class main:
                             result_value_pattern.append(dict_res)
                     rm_duplicate_result = list(set(tuple(item.items()) for item in result_value_pattern))
                     rm_duplicate_result = [dict(item) for item in rm_duplicate_result]
-                    # print(rm_duplicate_result)
                     for ress in rm_duplicate_result:
                         result.append(ress)
         return result
