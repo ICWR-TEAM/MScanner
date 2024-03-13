@@ -1,7 +1,6 @@
-from pathlib import Path
 import re, os, argparse
 
-blacklist = open("blacklist.txt", "r").read()
+blacklist = open("wordlist.txt", "r").read()
 explode_blacklist = blacklist.split("\n")
 
 class main:
@@ -19,10 +18,6 @@ class main:
         print("\033[32mResult scan:")
         for data in datas:
             print("\033[37mSuspect: \033[33m{} \033[37m| \033[37mCode: \033[31m{}".format(data["file"], data["code"]))
-
-    def get_path(self, paths):
-        target = Path(paths)
-        return target.iterdir()
     
     def scan_directory(self, directory):
         for item in os.listdir(directory):
