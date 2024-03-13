@@ -8,13 +8,14 @@ class main:
     global explode_blacklist
 
     def __init__(self, Target):
+        self.title()
+        print("Loading...")
         self.res_dir = [Target]
         self.scan_directory(Target)
         result = self.get_file(self.res_dir, explode_blacklist)
         self.proc(result)
 
     def proc(self, datas):
-        self.title()
         print("\033[32mResult scan:")
         for data in datas:
             print("\033[37mSuspect: \033[33m{} \033[37m| \033[37mCode: \033[31m{}".format(data["file"], data["code"]))
@@ -36,7 +37,7 @@ class main:
                 else:
                     pattern_suspect_code = r'\b(' + '|'.join(map(re.escape, suspect_code)) + r')\b'
                     res = path + "/" + item
-                    op_file = open(res, "r").read()
+                    op_file = open(res, "rb").read().decode("utf-8", errors="ignore")
                     find_pattern = re.findall(pattern_suspect_code, op_file)
                     result_value_pattern = []
                     for index, value in enumerate(find_pattern):
