@@ -35,6 +35,10 @@ For other usage options, run help:
 python scan.py -h
 ```
 
+# Update
+1. Code Optimization
+2. Performance Enhancement
+
 ## Contributing
 Contributions are highly appreciated. If you would like to contribute, please fork the repository, create your feature branch, and submit a pull request.
 
