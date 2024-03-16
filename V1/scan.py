@@ -1,6 +1,6 @@
 import re, os, argparse
 
-blacklist = open("wordlist.txt", "r").read()
+blacklist = open("../wordlist.txt", "r").read()
 explode_blacklist = blacklist.split("\n")
 
 class main:
@@ -12,6 +12,8 @@ class main:
         print("Loading...")
         self.res_dir = [Target]
         self.scan_directory(Target)
+        result = self.get_file(self.res_dir, explode_blacklist)
+        self.proc(result)
 
     def proc(self, datas):
         print("\033[32mResult scan:")
@@ -24,17 +26,32 @@ class main:
             if os.path.isdir(item_path):
                 self.res_dir.append(item_path)
                 self.scan_directory(item_path)
-            else:
-                self.get_file(item_path, explode_blacklist)
 
     def get_file(self, paths, suspect_code):
-        pattern_suspect_code = r'\b(' + '|'.join(map(re.escape, suspect_code)) + r')\b'
-        res = paths
-        op_file = open(res, "rb").read().decode("utf-8", errors="ignore")
-        find_pattern = re.findall(pattern_suspect_code, op_file)
-        for key, value in enumerate(find_pattern):
-            if value:
-                print("\033[37m[*] Suspect: \033[33m{} \033[37m| \033[37mCode: \033[31m{}".format(res, value))                
+        result = []
+        for path in paths:
+            for item in os.listdir(path):
+                item_path = os.path.join(path, item)
+                if os.path.isdir(item_path):
+                    continue
+                else:
+                    pattern_suspect_code = r'\b(' + '|'.join(map(re.escape, suspect_code)) + r')\b'
+                    res = path + "/" + item
+                    op_file = open(res, "rb").read().decode("utf-8", errors="ignore")
+                    find_pattern = re.findall(pattern_suspect_code, op_file)
+                    result_value_pattern = []
+                    for index, value in enumerate(find_pattern):
+                        if value:
+                            dict_res = {
+                                "file": res,
+                                "code": value
+                            }
+                            result_value_pattern.append(dict_res)
+                    rm_duplicate_result = list(set(tuple(item.items()) for item in result_value_pattern))
+                    rm_duplicate_result = [dict(item) for item in rm_duplicate_result]
+                    for ress in rm_duplicate_result:
+                        result.append(ress)
+        return result
     
     def title(self):
         print("""
