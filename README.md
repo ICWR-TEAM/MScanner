@@ -1,6 +1,9 @@
 # MScanner
 ![Screenshot from 2024-03-13 13-08-18](https://github.com/ICWR-TEAM/MScanner/assets/45759837/22d477d3-2707-434d-ae26-1c7c2c566c37)
 
+![Screencast from 2024-03-16 15-26-39](https://github.com/ICWR-TEAM/MScanner/assets/45759837/c832f320-1dff-4d35-9a32-19cc7b9894ab)
+
+
 MScanner is a powerful and flexible malicious code scanner designed to assist security professionals and developers in identifying and mitigating malicious code within software projects. Built with Python, MScanner leverages a provided `wordlist.txt` for detecting a wide range of malware and malicious scripts, facilitating the process of code security analysis.
 
 ## Key Features
