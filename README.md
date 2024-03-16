@@ -1,5 +1,4 @@
 # MScanner
-![Screenshot from 2024-03-13 13-08-18](https://github.com/ICWR-TEAM/MScanner/assets/45759837/22d477d3-2707-434d-ae26-1c7c2c566c37)
 
 ![Screencast from 2024-03-16 15-26-39](https://github.com/ICWR-TEAM/MScanner/assets/45759837/c832f320-1dff-4d35-9a32-19cc7b9894ab)
 
