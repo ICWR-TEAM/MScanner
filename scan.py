@@ -3,6 +3,7 @@ import re, os, argparse
 blacklist = open("wordlist.txt", "r").read()
 explode_blacklist = blacklist.split("\n")
 
+
 class main:
 
     global explode_blacklist
